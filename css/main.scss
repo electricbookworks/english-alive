@@ -1,0 +1,327 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+// Sizes
+$text-width: 30em;
+$line-height: 1em;
+
+// Fonts
+$font-main: "Crimson Text", serif;
+$font-secondary: "Crimson Text", serif;
+
+// Palette
+$dark: #00A09E;
+$mid: #a00002;
+$light: #ffffff;
+
+// Mixins
+@mixin smallcaps() {    text-transform: uppercase;
+    font-size: 0.7em;
+    letter-spacing: 0.075em;
+    line-height: 100%;
+}
+
+// Structure
+
+html, body {
+    overflow-x: hidden; // Prevents horizontal scrolling, in conjunction with width/max-width
+    width: 100%;
+    max-width: 100%;
+}
+body {
+    font-family: $font-main;
+    font-size: 1.3em;
+    margin: 0;
+    padding: 0;
+    line-height: 140%;
+    background-color: $light;
+}
+.wrapper {
+    margin: 0 auto;
+}
+
+// Masthead
+
+.masthead {
+    overflow-x: hidden; // Prevents horizontal scrolling
+    position: relative;
+    width: 300%;
+    left: -100%;
+    background-color: $dark;
+    height: 2em;
+    text-align: center;
+    padding: 1em 0 0 0;
+    box-shadow: 0 0.05em 0.2em $dark;
+}
+// On/Off
+.masthead { display: none; }
+
+
+// Sidebar
+
+.sidebar {
+    float: left;
+    position: fixed;
+    width: 10em;
+    top: 0;
+    height: 100vh;
+    background-color: $dark;
+    padding: 2em;
+    color: $light;
+    box-shadow: 0 0.05em 0.2em $dark;
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        li {
+            margin: 0;
+        }
+        }
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+    a:hover {
+        border-bottom: 1px dashed #ffffff;
+    }
+    .logo {
+        margin: 0.1em 0 1.5em 0;
+        a:hover {
+            border: 0;
+        }
+    }
+}
+
+
+// Content
+
+.content {
+    margin: 0 0 0 14em;
+    padding: 0 0 0 2em;
+    min-height: 100vh;
+}
+
+// Page TOCs
+
+#markdown-toc, .page-toc {
+    list-style-type: none;
+    padding: 0;
+    li li {
+        list-style-type: none;
+    }
+}
+
+// Footer
+// .footer {}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-family: $font-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    line-height: 110%;
+    max-width: $text-width * 0.7;
+    clear: both;
+}
+h1 {
+    font-size: 1.5em;
+    margin: 1.6em 0 1.1em 0;
+    line-height: 95%;
+}
+h2 {
+    font-size: 1em;
+    margin: 3em 0 1em -2em;
+    background: $dark;
+    color: white;
+    max-width: inherit;
+    padding: 0.3em 0.3em 0.3em 2em;
+}
+h3, h4, h5, h6 {
+    font-family: $font-main;
+    font-size: 1.2em;
+    text-align: left;
+    text-transform: none;
+    letter-spacing: 0;
+}
+p, ol, ul, dl, td {
+    max-width: $text-width;
+    a {
+        text-decoration: none;
+        color: inherit;
+        border-bottom: 1px dashed $dark;
+    }
+    a:hover {
+        text-shadow: 0 0.01em $dark;
+    }
+}
+    // except no border under links in tables
+    td {
+        a {
+            border: 0;
+        }
+        a:after {
+            content: " \2192"; // 2192 is a right arrow
+        }
+    }
+blockquote {
+    border-left: 5px solid $dark;
+    margin:  1em 1em 1em 0;
+    padding: 0 0 0 1em;
+}
+blockquote p, blockquote ol, blockquote ul {
+    font-style: italic;
+}
+strong {
+    font-weight: 600;
+    @include smallcaps();
+}
+em {
+    line-height: 100%;
+}
+hr {
+    border: 1px solid $mid;
+    width: calc(100% + 2em);
+    margin: 1em 0 1em -2em;
+}
+
+// Buttons
+
+a.button {
+    background-color: $dark;
+    padding: 0.4em 0.5em;
+    margin: 0 0.5em 0.5em 0;
+    border-radius: 0.2em;
+    display: inline-block;
+    color: $light;
+    box-shadow: 0 0.05em 0.1em $dark;
+}
+a.button:hover {
+    box-shadow: 0 0.05em 0.3em $dark;
+}
+
+// Embedded iframes
+
+.embed {
+    float: none;
+    clear: both;
+    width: 100%;
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    height: 0;
+    margin: 0 0 1em 0;
+}
+.embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+// Tables
+
+table {
+    width: $text-width * 0.95; // Overridden with media queries for narrow screens below
+    border-collapse: collapse;
+}
+tr {
+    border-top: 1px dashed $dark;
+    border-bottom: 1px dashed $dark;
+}
+th {
+    text-align: left;
+}
+td {
+    padding-right: 0.5em;
+}
+
+// Images
+
+.content {
+    img {
+        max-width: 100%;
+        width: 100%;
+    }
+    .full-width {
+        max-width: calc(100% + 2em);
+        margin: 0 0 0 -2em;
+        position: relative;
+        top: 0;
+        z-index: -1;
+        .content .full-width img {
+            max-width: 100%;
+        }
+    }
+    .fit-height {
+        img {
+            max-height: 100vh;
+            width: auto;
+        }
+    }
+}
+
+
+
+// Narrow screens
+
+// This for Windows (see https://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/)
+@viewport { width: device-width; }
+@-ms-viewport { width: device-width; }
+
+// Media queries
+@media only screen 
+    and (max-width : 60em) { // was 750px
+        h1 {
+            font-size: 0.9em;
+            margin: 1em 0 0.5em 0;
+        }
+        h2, h3, h4, h5, h6 {
+            font-size: 0.9em;
+        }
+        table {
+            width: 100%;
+        }
+        .sidebar {
+            float: none;
+            position: static;
+            width: 100%;
+            overflow-x: hidden;
+            height: auto;
+            padding: 0.2em 0.5em 0.4em 0.5em;
+            ul {
+                margin: 0em;
+                max-width: 90%;
+                li {
+                    display: inline-block;
+                    margin: 0;
+                }
+            }
+            li:after {
+                content: " \2022";
+            }
+            li:last-of-type:after {
+                content: "";
+            }
+            li:first-of-type:before {
+                content: "Fire and Lion \2022  ";
+                font-family: $font-secondary;
+                text-transform: uppercase;
+                font-size: 0.9em;
+                line-height: 100%;
+            }
+            .logo {
+                display: none;
+            }
+        }
+        .content {
+            margin: 0;
+            padding: 0.5em;
+            .full-width {
+                margin: 0;
+            }
+        }
+}
